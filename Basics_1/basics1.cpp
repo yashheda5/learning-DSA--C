@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
 int main(){
-    bool b=true;
-    cout<< ~(b);
+    cout<<"hello world"<<endl;
+    return 0;
 }
