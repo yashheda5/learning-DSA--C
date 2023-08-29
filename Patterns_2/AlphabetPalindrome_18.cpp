@@ -7,19 +7,16 @@ int main()
     cin >> n;
     for (int i = 0; i < n; i++)
     {
-        int a=65;
         int j=0;
-        for ( j = 0; j < i+1; j++)
-        {
-            cout<<(char)a++<<" ";
-        }
-        j--;
-        
-        for (j=i; j >=0 ; j--)
-        {
-            cout<<(char)a--<<" ";
-        }
-        
+       for (j = 0; j < i+1; j++)
+       {
+        cout<<char(j+'A')<<" ";
+       }
+       for (int j = i; j >=1; j--)
+       {
+        cout<<char(j+'A'-1)<<" ";
+       }
+       
         
         cout<<endl;
         
