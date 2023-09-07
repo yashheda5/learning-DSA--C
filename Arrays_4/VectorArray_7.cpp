@@ -41,7 +41,7 @@ int main(){
     }
     cout<<endl;
     cout<<crr.empty()<<endl;
-    vector<int>drr;
-    cout<<drr.empty()<<endl;
+    vector<int>err;
+    cout<<err.empty()<<endl;
     return 0;
 }
