@@ -1,31 +1,41 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-int main()
-{
-    vector<string> timepoints{"23:59", "00:00"};
-    vector<int> minutes;
-    for (int i = 0; i < timepoints.size(); i++)
-    {
-        string curr = timepoints[i];
-        int hours = stoi(curr.substr(0, 2));
-        int mins = stoi(curr.substr(3, 2));
-        int totalMin = hours * 60 + mins;
-        if (totalMin == 0)
+int main() {
+    vector<string> timePoints{"23:59","00:00"};
+        vector<int>temp;
+
+        //CONVERSION TO MINUTES:-  TC= o(n)
+        
+        for(int i =0;i<timePoints.size();i++)
         {
-            minutes.push_back(1440);
+            string s  = timePoints[i];
+            int hour = stoi(s.substr(0,2));
+            int minute = stoi(s.substr(3,2));
+            int total = hour*60 +minute;
+            temp.push_back(total);
         }
-        else
+        
+
+        //SORT THE VECTOR OF MINUTES:- TC = O(nlogn)
+
+        sort(temp.begin(),temp.end());
+
+
+        //CALCULATE THE  MIN. DIFFERENCE:-  TC = O(n)
+
+        int mini = INT_MAX;
+        int n = temp.size();
+        for(int i =0;i<n-1;i++)
         {
-            minutes.push_back(totalMin);
+            int difference  = temp[i+1] - temp[i];
+            mini = min(difference,mini);
+
         }
+        
+        int lastdiff1 = (temp[0] + 1440) - temp[n-1]; 
+        int lastdiff2=temp[n-1]- temp[0];
+        mini=min(lastdiff1,mini);
+        mini=min(mini,lastdiff2);
+
+        cout<< mini;
     }
-    sort(minutes.begin(), minutes.end());
-    int mini = INT_MAX;
-    for (int i = 0; i < minutes.size(); i++)
-    {
-        int diff = minutes[i + 1] - minutes[i];
-        mini = min(mini, diff);
-    }
-    
-    cout << mini << endl;
-}
