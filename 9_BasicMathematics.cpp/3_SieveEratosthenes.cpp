@@ -1,28 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
-int Sieve(int n){
-    if(n==0){
-        return 0;
-    }
-    vector<bool>prime(n,true);
-    prime[0] = prime[1]= false;
-    int ans =0;
-    for (int i = 2; i < n; i++)
-    {
-        if(prime[i]){
-            ans++;
+vector<bool> Sieve(int n){
+        vector<bool>sieve(n+1,true);
+        sieve[0]=sieve[1]=false;
+        for (int i = 2; i <= sqrt(n); i++)
+        {
+            if(sieve[i]== true){
+                int j= i*i;
+                while(j<=n){
+                    sieve[j]=false;
+                    j=j+i;
+                }
+            }
         }
-        int j=2*i;
-        while(j<n){
-            prime[j]=false;
-            j+=i;
-        }
+        return sieve;
+        
     }
-    return ans;
-    
-}
 int main(){
-    int n =13;
-    cout<<Sieve(n);
-
+    int n=2;
+    vector<bool> sieve=Sieve(n);
+    for (int i = 0; i <n ; i++)
+    {
+        if(sieve[i]){
+            cout<<i<<" ";
+        }
+    }
+    
 }
