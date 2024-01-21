@@ -1,7 +1,3 @@
 *.exe
-1_Basics/*.exe
-2_Patterns/*.exe
-3_Functions/*.exe
-4_Arrays/*.exe
-5_Searching/*.exe
+* .vscode
 
