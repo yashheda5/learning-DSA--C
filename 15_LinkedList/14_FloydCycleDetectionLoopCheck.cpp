@@ -33,39 +33,27 @@ int getLength(Node *head)
     }
     return len;
 }
-Node* reverseKNodes(Node* &head, int k) {
-    if (head == NULL) {
-        cout << "Linked list is empty!" << endl;
-        return NULL;
+bool checkForLoop(Node* head){
+    if(head == NULL){
+        cout<<"Linked list is empty! "<<endl;
+        return false;
     }
-    int len = getLength(head);
-    if (k > len) {
-        cout << "Enter valid value for k" << endl;
-        return head;
-    }
-
-    Node* prev = NULL;
-    Node* cur = head;
-    Node* forward =cur->next;
-    int count = 0;
-
-    // Reverse the first k nodes
-    while (count < k) {
-        forward = cur->next;
-        cur->next = prev;
-        prev = cur;
-        cur = forward;
-        count++;
-    }
-
-    // If there are remaining nodes, recursively reverse them
-    if (forward != NULL) {
-        head->next = reverseKNodes(forward, k);
-    }
-
-    return prev;
+    Node* slow = head;
+    Node* fast = head;
+     while(fast != NULL){
+        fast = fast->next;
+        if(fast != NULL){
+            fast = fast->next;
+            slow = slow->next;
+        }
+        if(slow == fast){
+            cout<<"Loop Present"<<endl;
+            return true;
+        }
+     }
+     cout<<"Loop not present "<<endl;
+     return false;
 }
-
 
 int main()
 {
@@ -75,19 +63,20 @@ int main()
     Node *fourth = new Node(16);
     Node *fifth = new Node(18);
     Node *sixth = new Node(20);
+    Node *seventh = new Node(22);
+    Node *eight = new Node(24);
+    Node *ninth = new Node(26);
     head->next = second;
     second->next = third;
     third->next = fourth;
     fourth->next = fifth;
     fifth->next = sixth;
-
-    cout << "Original linked list: ";
-    print(head);
-
-    head = reverseKNodes(head, 3);
-
-    cout << "Reversed linked list: ";
-    print(head);
-
+    sixth->next = seventh;
+    seventh->next= eight;
+    eight->next= ninth;
+    ninth->next= fifth;
+    cout << "Printing linked list "<<endl;
+    // print(head);
+    cout<<checkForLoop(head)<<endl;
     return 0;
 }
