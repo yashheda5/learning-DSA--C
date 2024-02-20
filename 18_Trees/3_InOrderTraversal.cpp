@@ -26,11 +26,17 @@ Node *BuildTree() {
   root->right = BuildTree();
   return root;
 }
-void levelOrder(Node *root) {
+void InOrder(Node *root) {
+  if(root == NULL) {
+    return ;
+  }
+  InOrder(root->left);
+  cout<<root->data << " ";
+  InOrder(root->right); 
   
 }
 int main() {
   Node *root = NULL;
   root = BuildTree();
-  levelOrder(root);
+  InOrder(root);
 }

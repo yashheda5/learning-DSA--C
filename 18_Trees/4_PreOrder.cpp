@@ -26,31 +26,18 @@ Node *BuildTree() {
   root->right = BuildTree();
   return root;
 }
-void levelOrder(Node *root) {
-  queue<Node *> q;
-  q.push(root);
-q.push(NULL);
-  while (!q.empty()) {
-    Node *temp = q.front();
-    q.pop();
-    if (temp == NULL) {
-      cout << endl;
-      if (!q.empty()) {
-        q.push(NULL);
-      }
-    } else {
-      cout << temp->data << " ";
-      if (temp->left) {
-        q.push(temp->left);
-      }
-      if (temp->right) {
-        q.push(temp->right);
-      }
-    }
+void PreOrder(Node *root) {
+  if(root == NULL) {
+    return ;
   }
+  cout<<root->data<<" ";
+  PreOrder(root->left);
+  PreOrder(root->right);
+ 
+  
 }
 int main() {
   Node *root = NULL;
   root = BuildTree();
-  levelOrder(root);
+  PreOrder(root);
 }

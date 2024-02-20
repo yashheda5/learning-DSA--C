@@ -26,31 +26,28 @@ Node *BuildTree() {
   root->right = BuildTree();
   return root;
 }
-void levelOrder(Node *root) {
-  queue<Node *> q;
-  q.push(root);
-q.push(NULL);
-  while (!q.empty()) {
-    Node *temp = q.front();
-    q.pop();
-    if (temp == NULL) {
-      cout << endl;
-      if (!q.empty()) {
-        q.push(NULL);
-      }
-    } else {
-      cout << temp->data << " ";
-      if (temp->left) {
-        q.push(temp->left);
-      }
-      if (temp->right) {
-        q.push(temp->right);
-      }
+int height(Node* root){
+    if (root == NULL){
+        return 0;
     }
-  }
+    int leftHeight = height(root->left);    
+    int rightHeight = height(root->right);
+    int ans=max(leftHeight,rightHeight) +1 ;
+    return ans;
+}
+int Diameter(Node* root){
+    if (root == NULL){
+        return 0;
+    }
+    int op1 =Diameter(root->left);
+    int opt2 =Diameter(root->right);
+    int opt3=height(root->left)+ height(root->right);
+    int ans=max(op1,max(opt2,opt3));
+    return ans;
 }
 int main() {
   Node *root = NULL;
   root = BuildTree();
-  levelOrder(root);
+  cout<<Diameter(root)<<endl;
+  
 }
