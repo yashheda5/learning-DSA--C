@@ -30,7 +30,7 @@ Node *BuildTree()
     root->right = BuildTree();
     return root;
 }
-voidd solve(Node *root, int targetSum, int CurrSum, vector<int> path, vector<vector<int>> &ans)
+voidd solve(Node* root, int targetSum, int& CurrSum, vector<int>& path, vector<vector<int>> &ans)
 {
     if (root == NULL)
     {
@@ -54,6 +54,8 @@ voidd solve(Node *root, int targetSum, int CurrSum, vector<int> path, vector<vec
     CurrSum += root->data;
     solve(root->left, targetSum, CurrSum, path, ans);
     solve(root->right, targetSum, CurrSum, path, ans);
+    path.pop_back();
+    CurrSum -= root->data;
 }
 vector<vector<int>> pathSum(Node *root, int targetSum)
 {
