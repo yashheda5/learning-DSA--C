@@ -9,7 +9,10 @@
         "new": "cpp",
         "valarray": "cpp",
         "array": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "bitset": "cpp",
+        "initializer_list": "cpp",
+        "utility": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
