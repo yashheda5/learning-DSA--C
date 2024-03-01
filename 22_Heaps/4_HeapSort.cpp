@@ -49,11 +49,21 @@ void BuildHeap(int arr[], int size){
     }
 }
 
+void heapSort(int arr[], int size){
+    BuildHeap(arr, size); // Build heap before sorting
+    int index = size;
+    while(index != 1){ // Corrected the loop condition
+        swap(arr[1], arr[index]);
+        index--;
+        heapify(arr, index, 1); // Corrected the size passed to heapify
+    }
+}
+
 int main()
 {
     int arr[] = {-1, 12, 15, 13, 11, 14};
     int n = 5;
-    BuildHeap(arr, n);
+    heapSort(arr, n);
     cout << "printing the heap..." << endl;
     for (int i = 1; i <= n; i++) // Start the loop from index 1
     {
@@ -61,4 +71,3 @@ int main()
     }
     cout << endl;
 } 
- 
