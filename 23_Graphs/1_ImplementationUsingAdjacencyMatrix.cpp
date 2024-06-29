@@ -12,6 +12,7 @@ int main(){
         int u,v;
         cin>>u>>v;
         adj[u][v]=1;
+        adj[v][u]=1;
     }
     for (int i = 0; i < n; i++)
     {
