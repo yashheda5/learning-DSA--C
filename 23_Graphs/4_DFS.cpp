@@ -20,35 +20,24 @@ public:
     {
         for (auto node : adjList)
         {
-            cout << node.first << "-> ";
+            cout << node.first << " -> ";
             for (auto neighbor : node.second)
             {
-                cout << "(" << neighbor.first << "," << neighbor.second << ")";
+                cout << "(" << neighbor.first << "," << neighbor.second << ") ";
             }
             cout << endl;
         }
     }
 
-    void bfs(T src)
+    void Dfs(T src, unordered_map<T, bool>& visited)
     {
-        queue<T> q;
-        unordered_map<T, bool> visited;
-        q.push(src);
+        cout << src << " ";
         visited[src] = true;
-
-        while (!q.empty())
+        for (auto neighbor : adjList[src])
         {
-            T frontNode = q.front();
-            q.pop();
-            cout << frontNode << " ";
-
-            for (auto neighbor : adjList[frontNode])
+            if (!visited[neighbor.first])
             {
-                if (!visited[neighbor.first])
-                {
-                    q.push(neighbor.first);
-                    visited[neighbor.first] = true;
-                }
+                Dfs(neighbor.first, visited);
             }
         }
     }
@@ -65,7 +54,15 @@ int main()
     g.addEdge(7, 4, 1, 0);
 
     g.printAdjacencyList();
-    g.bfs(0);
+
+    unordered_map<int, bool> visited;
+    for (int i = 0; i <= 7; i++)
+    {
+        if (!visited[i])
+        {
+            g.Dfs(i, visited);
+        }
+    }
 
     return 0;
 }

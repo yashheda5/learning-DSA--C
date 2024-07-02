@@ -3,8 +3,8 @@ using namespace std;
 template<typename T>
 class Graph{
     public :
-    unordered_map<T,list<pair<T,T>> >adjList;
-    void addEdge(int u, int v,T weight, bool direction){
+    unordered_map<T,list<pair<T,int>> >adjList;
+    void addEdge(T u, T v,int  weight, bool direction){
         adjList[u].push_back({v, weight});
         if(direction == 0){
             adjList[v].push_back({u, weight});
