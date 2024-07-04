@@ -29,10 +29,10 @@ public:
         }
     }
 
-    void bfs(T src)
+    void bfs(T src,unordered_map<T, bool>& visited)
     {
         queue<T> q;
-        unordered_map<T, bool> visited;
+        
         q.push(src);
         visited[src] = true;
 
@@ -65,7 +65,13 @@ int main()
     g.addEdge(7, 4, 1, 0);
 
     g.printAdjacencyList();
-    g.bfs(0);
+    unordered_map<int, bool> visited;
+
+    for(int i=0;i<=7;i++){
+        if(!visited[i]){
+            g.bfs(i,visited);
+        }
+    }
 
     return 0;
 }
