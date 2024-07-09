@@ -20,7 +20,21 @@ class graph{
             cout<<endl;
         }
     }
-    
+      bool checkCycleDirectedDFS(int src ,unordered_map<int, bool> visited,unordered_map<int, bool> dfsCalls  ){
+        visited[src] = true;
+        dfsCalls[src] = true;
+        for(auto i : adjList[src]){
+            if(! visited[i.first]){
+                return checkCycleDirectedDFS(i.first,visited, dfsCalls);
+            }else{
+                if(dfsCalls[i.first]){
+                    return true;
+                }
+            }
+        }
+        dfsCalls[src]=false;
+        return false;
+    }
 };
 int main(){
  graph g;
@@ -29,4 +43,32 @@ int main(){
     g.addEdge(0,2,6,1);
     
     g.printGraph();
+     Graph g;
+    g.addEdge(1, 2, 0, 1);
+    g.addEdge(2, 3, 0, 1);
+    g.addEdge(3, 1, 0, 1);
+    // g.addEdge(3, 1, 0, 0);
+ 
+    g.printGraph();
+    int n = 4;
+    bool ans = false;
+    unordered_map<int, bool> visited;
+    unordered_map<int, bool> dfsCalls;
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i])
+        {
+            ans = g.checkCycleDirectedDFS(i, visited,dfsCalls);
+            if (ans)
+            {
+                cout << "cycle detected" << endl;
+                break;
+            }
+        }
+    }
+    if (!ans)
+    {
+        cout << "cycle not  detected" << endl;
+    }
+    
 }

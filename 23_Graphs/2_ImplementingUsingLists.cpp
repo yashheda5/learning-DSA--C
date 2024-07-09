@@ -25,7 +25,7 @@ int main(){
     g.addEdge(0,1,5,1);
     g.addEdge(1,2,8,1);
     g.addEdge(0,2,6,1);
-    cout<<endl;
+   
     g.printAdjacencyList();
 
 }

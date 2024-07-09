@@ -57,17 +57,15 @@ public:
 int main()
 {
     Graph<int> g;
-    g.addEdge(0, 1, 1, 0);
-    g.addEdge(1, 2, 1, 0);
-    g.addEdge(1, 3, 1, 0);
-    g.addEdge(3, 5, 1, 0);
-    g.addEdge(3, 7, 1, 0);
-    g.addEdge(7, 4, 1, 0);
+   g.addEdge(0, 1, 0, 0);
+    g.addEdge(1, 3, 0, 0);
+    g.addEdge(0, 2, 0, 0);
+    g.addEdge(2, 4, 0, 0);
 
     g.printAdjacencyList();
     unordered_map<int, bool> visited;
-
-    for(int i=0;i<=7;i++){
+int n=5;
+    for(int i=0;i<n;i++){
         if(!visited[i]){
             g.bfs(i,visited);
         }

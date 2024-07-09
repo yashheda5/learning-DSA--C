@@ -29,34 +29,30 @@ public:
             cout << endl;
         }
     }
-    bool checkCycle(T src, unordered_map<int, bool> &visited)
-    {
-        queue<T> q;
-        unordered_map<int, int> parent;
+    bool checkCycle(int src, unordered_map<int,bool>& visited){
+        queue<int> q;
+        unordered_map<int,int> parent;
+        parent[src]=-1;
+        visited[src]=true;
         q.push(src);
-        visited[src] = true;
-        parent[src] = -1;
-        while (!q.empty())
-        {
-            T frontNode = q.front();
+        while(!q.empty()){
+            int temp = q.front();
             q.pop();
-
-            for (auto i : adjList[frontNode])
-            {
-                if (!visited[i.first])
-                {
+            for(auto i: adjList[temp]){
+                if(! visited[i.first]){
                     q.push(i.first);
-                    visited[i.first] = true;
-                    parent[i.first] = frontNode;
-                }
-                if (visited[i] && i.first != parent[frontNode])
-                {
-                    return true;
+                    visited[i.first]=true;
+                    parent[i.first]=temp;
+                }else{
+                    if(i.first != parent[temp]){
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
+  
 };
 int main()
 {
@@ -65,24 +61,24 @@ int main()
     g.addEdge(0, 1, 0, 0);
     g.addEdge(1, 2, 0, 0);
     g.addEdge(2, 3, 0, 0);
-    g.addEdge(3, 1, 0, 0);
+    // g.addEdge(3, 1, 0, 0);
     g.PrintGraph();
     unordered_map<int, bool> visited;
-    bool ans = false;
-    for (int i = 0; i < n; i++)
+    
+    bool ans=false;
+    for (int  i = 0; i < n; i++)
     {
-        if (!visited[i])
-        {
-            ans = g.checkCycle(i, visited);
-            if (ans)
-            {
-                cout << "cycle present " << endl;
+        if(!visited[i]){
+            ans=g.checkCycle(i,visited);
+            if(ans){
+                cout<<"cycle detected"<<endl;
                 break;
             }
         }
     }
-    if (!ans)
-    {
-        cout << "cycle absent" << endl;
+    if(!ans){
+        cout<<"cycle not detected"<<endl;
     }
+    
+    
 }
